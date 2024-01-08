@@ -2,6 +2,8 @@ package com.company;
 
 import jdk.jfr.Name;
 
+import java.lang.annotation.*;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -31,9 +33,13 @@ class MyClass{
     }
 }
 
+
 // создавать свои анотации
+@Inherited // то что он может быть наслодован
+@Retention(RetentionPolicy.RUNTIME) // кагда аннотацию вступают в силу (во время запуска)
+@Target({ElementType.FIELD, ElementType.LOCAL_VARIABLE, ElementType.TYPE}) // где применять
 @interface  MyAnnotation{
     boolean run() default true; // значение по умолчанию
-    int i(); 
+    int i();
     String value();
 }
