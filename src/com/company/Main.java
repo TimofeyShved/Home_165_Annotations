@@ -43,3 +43,25 @@ class MyClass{
     int i();
     String value();
 }
+
+// аннотации об ошибках
+@interface  BugReport{
+    enum Status {UNCONFIRMED, CONFIRMED, FIXED, NOTABUG};
+    boolean showStop() default  false;
+    // он может быть int, short, byte, long, float
+
+    String ast1() default "[none]";
+    String ast2() default  "";
+    // Так нельзя!
+    //String ast3() default "[none]" + new String("");
+    //String ast3() default null;
+
+    int i() default 4; // константы
+    Class<?> testCase() default Void.class; // специальный класс
+    BugReport.Status status() default  BugReport.Status.UNCONFIRMED; // свои и другие аннотации
+    String[] report(); // массив строк
+
+    //Так нельзя! Другие объекты в том числе и простые классы
+    //Object o;
+
+}
